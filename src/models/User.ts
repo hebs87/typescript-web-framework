@@ -3,6 +3,9 @@ interface UserProps {
   age: number;
 }
 
+// Declare an annotation type for a callback function - takes no arguments and returns nothing
+type Callback = () => {};
+
 export class User {
   constructor(private data: UserProps) {}
 
