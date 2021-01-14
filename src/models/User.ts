@@ -4,7 +4,7 @@ interface UserProps {
 }
 
 // Declare an annotation type for a callback function - takes no arguments and returns nothing
-type Callback = () => {};
+type Callback = () => void;
 
 export class User {
   // Event object that holds keys that are strings with arrays of callback functions as their properties
@@ -21,7 +21,7 @@ export class User {
     Object.assign(this.data, update)
   };
 
-  on = (eventName: string, callback: Callback) => {
+  on = (eventName: string, callback: Callback): void => {
 
   };
 }
