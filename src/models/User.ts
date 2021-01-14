@@ -22,6 +22,10 @@ export class User {
   };
 
   on = (eventName: string, callback: Callback): void => {
-
+    // If the relevant key exists, we get that event handler. If not, get an empty array
+    const handlers = this.events[eventName] || [];
+    // Register the callback against the relevant event handler
+    handlers.push(callback);
+    this.events[eventName] = handlers;
   };
 }

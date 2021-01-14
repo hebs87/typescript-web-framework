@@ -1,6 +1,7 @@
 import { User } from "./models/User";
 
 const user = new User({name: 'Sunny', age: 33});
-user.set({name: 'Kim', age: 28});
-console.log(user.get('name'));
-console.log(user.get('age'));
+user.on('change', ():void => {console.log('change')});
+user.on('change', ():void => {console.log('change 2')});
+user.on('click', ():void => {console.log('click')});
+console.log(user);
