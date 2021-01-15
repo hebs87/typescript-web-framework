@@ -1,4 +1,5 @@
 import { User } from "./models/User";
+import axios from "axios";
 
 const user = new User({name: 'Sunny', age: 33});
 user.on('change', ():void => {console.log('Change 1')});
