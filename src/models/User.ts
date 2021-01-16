@@ -1,6 +1,9 @@
+import axios, {AxiosResponse} from "axios";
+
 interface UserProps {
-  name: string;
-  age: number;
+  id?: number;
+  name?: string;
+  age?: number;
 }
 
 // Declare an annotation type for a callback function - takes no arguments and returns nothing
@@ -12,7 +15,7 @@ export class User {
 
   constructor(private data: UserProps) {}
 
-  get = (propName: string): string | number => {
+  get = (propName: string): string | number | undefined => {
     return this.data[propName as keyof UserProps];
   };
 
@@ -38,4 +41,15 @@ export class User {
     // Loop through array of callbacks and invoke each one
     handlers.forEach((callback: Callback): void => callback());
   };
+
+  fetch = (): void => {
+    axios.get(` http://localhost:3000/users/${this.get('id')}`)
+      .then((res: AxiosResponse): void => {
+        console.log(res.data);
+        this.set(res.data);
+      })
+      .catch((error: AxiosResponse): void => {
+        console.log(error)
+      });
+  }
 }
