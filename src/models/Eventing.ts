@@ -1,7 +1,7 @@
 // Declare an annotation type for a callback function - takes no arguments and returns nothing
 type Callback = () => void;
 
-class Eventing {
+export class Eventing {
   // Event object that holds keys that are strings with arrays of callback functions as their properties
   events: {[key: string]: Callback[]} = {};
 
