@@ -7,5 +7,6 @@ user.on('click', ():void => {console.log('Click')});
 user.trigger('change');
 user.trigger('click');
 
-const fetchUser = new User({id: 1});
-fetchUser.fetch();
+const fetchUser = new User({id: 2});
+fetchUser.set({name: "Kim", age: 28});
+fetchUser.save();
