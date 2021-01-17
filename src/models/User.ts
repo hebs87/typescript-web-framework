@@ -22,4 +22,19 @@ export class User {
     // Initialise Attributes class to enable calling it from User, pass in attrs object
     this.attributes = new Attributes<UserProps>(attrs);
   };
+
+  // Getter to act as a pass through to the Eventing class on method
+  get on() {
+    return this.events.on;
+  }
+
+  // Getter to act as a pass through to the Eventing class trigger method
+  get trigger() {
+    return this.events.trigger;
+  }
+
+  // Getter to act as a pass through to the Attributes class get method
+  get get() {
+    return this.attributes.get;
+  }
 }
