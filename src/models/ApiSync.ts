@@ -1,11 +1,11 @@
-import axios, {AxiosResponse, AxiosPromise} from "axios";
+import axios, {AxiosPromise} from "axios";
 
 interface HasId {
   id?: number;
 }
 
 // Generic class which accepts any argument type, but it extends HasId, which tells TypeScript that it will have an id
-export class Sync<T extends HasId> {
+export class ApiSync<T extends HasId> {
   constructor(public rootUrl: string) {}
 
   fetch = (id: number): AxiosPromise => {
