@@ -25,11 +25,3 @@ export class Sync<T extends HasId> {
     }
   };
 }
-
-// .then((res: AxiosResponse): void => {
-//   console.log(res.data);
-//   this.set(res.data);
-// })
-//   .catch((error: AxiosResponse): void => {
-//     console.log(error)
-//   });
