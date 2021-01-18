@@ -1,3 +1,4 @@
+import {AxiosResponse} from "axios";
 import {Eventing} from "./Eventing";
 import {Sync} from "./Sync";
 import {Attributes} from "./Attributes";
@@ -38,8 +39,23 @@ export class User {
     return this.attributes.get;
   };
 
+  // Update user object and trigger change event
   set = (update: UserProps): void => {
     this.attributes.set(update);
     this.events.trigger('change');
+  };
+
+  // Get id, fetch matching user object and update values
+  fetch = (): void => {
+    const id = this.get('id');
+    // Throw error if id is not a number or if there isn't an id
+    if (typeof id !== 'number') {
+      throw new Error('Cannot fetch data without an id');
+    }
+    // Fetch the data and call the set method
+    this.sync.fetch(id)
+      .then((res: AxiosResponse): void => {
+        this.set(res.data);
+      });
   };
 }
