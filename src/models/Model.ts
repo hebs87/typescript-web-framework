@@ -34,19 +34,13 @@ export class Model<T extends HasId> {
   ){}
 
   // Getter to act as a pass through to the Eventing class on method
-  get on() {
-    return this.events.on;
-  };
+  on = this.events.on;
 
   // Getter to act as a pass through to the Eventing class trigger method
-  get trigger() {
-    return this.events.trigger;
-  };
+  trigger = this.events.trigger;
 
   // Getter to act as a pass through to the Attributes class get method
-  get get() {
-    return this.attributes.get;
-  };
+  get = this.attributes.get;
 
   // Update user object and trigger change event
   set = (update: T): void => {
