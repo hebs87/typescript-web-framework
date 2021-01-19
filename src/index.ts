@@ -1,5 +1,4 @@
-import { User, UserProps } from "./models/User";
-import {Collection} from "./models/Collection";
+import {User} from "./models/User";
 
 // const user = User.buildUser({id: 3, name: 'Dixie', age: 4});
 // user.on('change', ():void => {console.log(user)});
@@ -7,9 +6,8 @@ import {Collection} from "./models/Collection";
 // // user.fetch();
 // user.fetch();
 
-const collection = new Collection<User, UserProps>(
-  'http://localhost:3000/users',
-  (json: UserProps) => User.buildUser(json)
-);
-collection.on('change', () => {console.log(collection)});
+const collection = User.buildUserCollection();
+collection.on('change', () => {
+  console.log(collection)
+});
 collection.fetch();
