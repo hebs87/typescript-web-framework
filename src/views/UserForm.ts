@@ -1,11 +1,25 @@
+import {Callback} from "../models/Eventing";
+
 export class UserForm {
   constructor(public parent: Element) {}
+
+  // Map of the event handlers - the key is the handler:elementName, and the value is the callback function
+  eventsMap = (): {[key: string]: Callback} => {
+    return {
+      'click:button': this.onButtonClick,
+    };
+  };
+
+  onButtonClick = (): void => {
+    console.log('Hi there!');
+  };
 
   template = (): string => {
     return `
       <div>
         <h1>User Form</h1>
         <input type="text"/>
+        <button>Click Me</button>
       </div>
     `;
   };
