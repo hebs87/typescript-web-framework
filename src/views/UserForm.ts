@@ -1,16 +1,20 @@
 import {Callback} from "../models/Eventing";
+import {User} from "../models/User";
 
 export class UserForm {
-  constructor(public parent: Element) {}
+  constructor(
+    public parent: Element,
+    public model: User
+  ) {}
 
-  // Map of the event handlers - the key is the handler:elementName, and the value is the callback function
+  // Map of the event handlers - the key is the handler:querySelector, and the value is the callback function
   eventsMap = (): {[key: string]: Callback} => {
     return {
-      'click:button': this.onButtonClick,
+      'click:.set-age': this.onSetAgeClick,
     };
   };
 
-  onButtonClick = (): void => {
+  onSetAgeClick = (): void => {
     console.log('Button clicked');
   };
 
@@ -18,8 +22,11 @@ export class UserForm {
     return `
       <div>
         <h1>User Form</h1>
+        <p>Name: ${this.model.get('name')}</p>
+        <p>Age: ${this.model.get('age')}</p>
         <input type="text"/>
         <button>Click Me</button>
+        <button class="set-age">Set Random Age</button>
       </div>
     `;
   };
