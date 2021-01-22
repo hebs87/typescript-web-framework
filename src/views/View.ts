@@ -62,6 +62,10 @@ export abstract class View<T extends Model<K>, K> {
     }
   };
 
+  // Dummy helper method to get defined in child class - called in render right before content gets pushed
+  // This will contain our mapping logic
+  onRender = (): void => {};
+
   render = (): void => {
     // Clear parent innerHTML each time the render method is called to prevent multiple elements being rendered
     this.parent.innerHTML = '';
@@ -72,6 +76,8 @@ export abstract class View<T extends Model<K>, K> {
     this.bindEvents(templateElement.content);
     // Bind regions to the templateElement content
     this.mapRegions(templateElement.content);
+    // Apply region mapping/nesting logic before pushing content to parent element
+    this,this.onRender();
     // Append the templateElement content to the parent element - content is the actual HTML that gets appended
     this.parent.append(templateElement.content);
   };
