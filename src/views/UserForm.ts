@@ -1,21 +1,8 @@
 import {Callback} from "../models/Eventing";
 import {User} from "../models/User";
+import {View} from "./View";
 
-export class UserForm {
-  constructor(
-    public parent: Element,
-    public model: User
-  ) {
-    // Render the HTML each time there is a change to the values
-    this.bindModel();
-  }
-
-  bindModel = (): void => {
-    this.model.on('change', () => {
-      this.render();
-    });
-  };
-
+export class UserForm extends View {
   // Map of the event handlers - the key is the handler:querySelector, and the value is the callback function
   eventsMap = (): {[key: string]: Callback} => {
     return {
@@ -49,31 +36,5 @@ export class UserForm {
         <button class="set-age">Set Random Age</button>
       </div>
     `;
-  };
-
-  // Helper method that takes a reference of a document fragment and parses and binds the relevant event handlers
-  bindEvents = (fragment: DocumentFragment): void => {
-    const eventsMap = this.eventsMap();
-
-    for (let eventKey in eventsMap) {
-      // Destructure the first and second elements in the split array and call them eventName and selector
-      const [eventName, selector] = eventKey.split(':');
-      // Select all relevant elements in the fragment and bind the relevant handler method to it
-      fragment.querySelectorAll(selector).forEach(element => {
-        element.addEventListener(eventName, eventsMap[eventKey]);
-      });
-    }
-  };
-
-  render = (): void => {
-    // Clear parent innerHTML each time the render method is called to prevent multiple elements being rendered
-    this.parent.innerHTML = '';
-    // Create a template element, set its inner HTMl to the string rendered in the template method
-    const templateElement = document.createElement('template');
-    templateElement.innerHTML = this.template();
-    // Bind event handlers to the templateElement content
-    this.bindEvents(templateElement.content);
-    // Append the templateElement content to the parent element - content is the actual HTML that gets appended
-    this.parent.append(templateElement.content);
   };
 }
