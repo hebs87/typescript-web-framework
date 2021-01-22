@@ -1,15 +1,16 @@
 import {Model} from "../models/Model";
-import {User} from "../models/User";
 import {Callback} from "../models/Eventing";
 
-export abstract class View {
+// T will be the User class that is passed in, and we will also get the UserProps (K), which will be passed into the
+// generic Model class - T will have all the properties of the Model class, with K loaded into it
+export abstract class View<T extends Model<K>, K> {
   constructor(
     public parent: Element,
-    public model: User
+    public model: T
   ) {
     // Render the HTML each time there is a change to the values
     this.bindModel();
-  }
+  };
 
   // abstract methods tell us that this method will be passed in when the class is initialised
   abstract template(): string;

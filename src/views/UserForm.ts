@@ -1,8 +1,8 @@
 import {Callback} from "../models/Eventing";
-import {User} from "../models/User";
+import {User, UserProps} from "../models/User";
 import {View} from "./View";
 
-export class UserForm extends View {
+export class UserForm extends View<User, UserProps> {
   // Map of the event handlers - the key is the handler:querySelector, and the value is the callback function
   eventsMap = (): {[key: string]: Callback} => {
     return {
