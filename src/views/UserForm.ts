@@ -5,7 +5,16 @@ export class UserForm {
   constructor(
     public parent: Element,
     public model: User
-  ) {}
+  ) {
+    // Render the HTML each time there is a change to the values
+    this.bindModel();
+  }
+
+  bindModel = (): void => {
+    this.model.on('change', () => {
+      this.render();
+    });
+  };
 
   // Map of the event handlers - the key is the handler:querySelector, and the value is the callback function
   eventsMap = (): {[key: string]: Callback} => {
@@ -46,6 +55,8 @@ export class UserForm {
   };
 
   render = (): void => {
+    // Clear parent innerHTML each time the render method is called to prevent multiple elements being rendered
+    this.parent.innerHTML = '';
     // Create a template element, set its inner HTMl to the string rendered in the template method
     const templateElement = document.createElement('template');
     templateElement.innerHTML = this.template();
