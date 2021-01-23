@@ -3,6 +3,13 @@
 This is a web framework written in TypeScript. It uses `JSON Server` for backend data
 storage.
 
+## Install `parcel-bundler`
+
+You will need to install `parcel-bundler` to run the project by running the following
+command in the terminal:
+
+`npm install -g parcel-bundler`
+
 ## Install and Configure `JSON Server`
 
 To install and configure the `JSON Server`, complete the following steps:
